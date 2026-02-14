@@ -4,3 +4,5 @@ __pycache__/
 .venv
 *.pyc
 data/raw/
+Telco Customer Churn/data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+Telco Customer Churn/data/raw/
