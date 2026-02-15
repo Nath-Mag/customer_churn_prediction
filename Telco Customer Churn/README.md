@@ -144,6 +144,26 @@ Monitor high monthly charge customers early.
 
 ---
 
+## 📂 Project Structure
+
+```
+customer_churn_prediction/
+│
+├── notebooks/
+│   ├── 01_data_cleaning.ipynb        # Data cleaning & preprocessing
+│   ├── 02_eda.ipynb                  # Exploratory data analysis
+│   ├── 03_feature_engineering.ipynb  # Feature creation & encoding
+│   ├── 04_modelling.ipynb            # Model training & evaluation
+│   └── 05_business_insights.ipynb    # Final insights & recommendations
+│
+├── data/
+│   └── processed/                    # Cleaned datasets (raw data excluded)
+│
+├── requirements.txt                  # Project dependencies
+├── .gitignore                        # Ignored files & folders
+└── README.md                         # Project documentation
+```
+
 ## ▶️ How to Run
 
 1. Clone the repository:
