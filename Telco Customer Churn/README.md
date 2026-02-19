@@ -185,6 +185,20 @@ customer_churn_prediction/
 
 ---
 
+## ▶️ Run the Streamlit Dashboard
+
+```bash
+pip install -r requirements.txt
+streamlit run app/app.py
+```
+
+### Dashboard Features
+- Interactive filters (tenure, contract, internet service, payment method)
+- KPI cards and churn breakdown
+- Key driver visuals
+- Threshold slider
+
+
 ## 👤 Author
 
 **Nathaniel Magit**  
