@@ -1,6 +1,12 @@
 # 📊 Customer Churn Prediction & Retention Strategy
 
 ---
+## 🚀 Live Dashboard
+
+View the interactive dashboard here:
+https://customerchurnprediction-7efk42xq3brtjwrgamaxbs.streamlit.app
+
+---
 
 ## 🚀 Project Overview
 
