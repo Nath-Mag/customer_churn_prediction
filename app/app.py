@@ -16,7 +16,7 @@ st.set_page_config(page_title="Customer Churn Dashboard", layout="wide")
 def load_data():
     project_root = Path(__file__).resolve().parents[1]
 
-    data_path = project_root / "Telco Customer Churn" / "data" / "processed" / "telco_cleaned.csv"
+    data_path = project_root / "data" / "processed" / "telco_cleaned.csv"
 
     if not data_path.exists():
         st.error(f"❌ Data file not found at: {data_path}")
@@ -36,8 +36,9 @@ df = load_data()
 def train_and_score_model():
     project_root = Path(__file__).resolve().parents[1]
 
-    X_path = project_root / "Telco Customer Churn" / "data" / "processed" / "X_features.csv"
-    y_path = project_root / "Telco Customer Churn" / "data" / "processed" / "y_target.csv"
+    data_path = project_root / "data" / "processed" / "telco_cleaned.csv"
+    X_path = project_root / "data" / "processed" / "X_features.csv"
+    y_path = project_root / "data" / "processed" / "y_target.csv"
 
     if not X_path.exists() or not y_path.exists():
         return None
