@@ -15,18 +15,21 @@ st.set_page_config(page_title="Customer Churn Dashboard", layout="wide")
 @st.cache_data
 def load_data():
     project_root = Path(__file__).resolve().parents[1]
-
     data_path = project_root / "data" / "processed" / "telco_cleaned.csv"
-
-    if not data_path.exists():
-        st.error(f"❌ Data file not found at: {data_path}")
-        st.stop()
 
     df = pd.read_csv(data_path)
 
-    # Standardize target to 0/1 if needed
-    if df["Churn"].dtype == "object":
-        df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})
+    churn_raw = df["Churn"].astype(str).str.strip().str.lower()
+
+    valid_values = {"yes", "no", "1", "0"}
+    unexpected = set(churn_raw.unique()) - valid_values
+
+    if unexpected:
+        raise ValueError(f"Unexpected Churn values: {sorted(unexpected)}")
+
+    df["Churn"] = churn_raw.map(
+        {"yes": 1, "no": 0, "1": 1, "0": 0}
+    ).astype(int)
 
     return df
 
@@ -107,7 +110,8 @@ tab1, tab2, tab3 = st.tabs(["📊 Overview", "📈 Drivers", "🤖 Model Perform
 with tab1:
     st.title("Customer Churn Dashboard")
     total_customers = len(filtered)
-    churn_rate = filtered["Churn"].mean() if total_customers else 0.0
+    churn_rate = pd.to_numeric(filtered["Churn"], errors="coerce").mean() if total_customers else 0.0
+   #churn_rate = filtered["Churn"].mean() if total_customers else 0.0
     avg_monthly = filtered["MonthlyCharges"].mean() if "MonthlyCharges" in filtered.columns and total_customers else 0.0
 
     # simple estimate: expected monthly revenue at risk = churners * avg monthly charge
